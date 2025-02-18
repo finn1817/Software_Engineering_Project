@@ -1,9 +1,8 @@
 import subprocess
 
 def install_packages():
-    """Installs required dependencies."""
-    subprocess.run(["pip", "install", "flask"], check=True)
-    print("✅ Flask installed successfully!")
+    """Installs required dependencies (only smtplib is built-in)."""
+    print("✅ No additional installations needed! Tkinter & smtplib are built-in.")
 
 if __name__ == "__main__":
     install_packages()
