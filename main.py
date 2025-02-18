@@ -1,20 +1,13 @@
-from flask import Flask, request, jsonify
+import tkinter as tk
+from ui import open_main_menu
 
-app = Flask(__name__)
+# main window
+root = tk.Tk()
+root.title("HelpBot - Team Issue Tracker")
+root.geometry("400x300")
 
-@app.route("/")
-def home():
-    return "Welcome to the Helpbot! Send a POST request to /helpbot with {'message': 'your question'}"
+tk.Label(root, text="Welcome to HelpBot", font=("Arial", 14)).pack(pady=10)
+tk.Button(root, text="Open App", command=lambda: open_main_menu(root), width=20).pack(pady=10)
+tk.Button(root, text="Exit", command=root.quit, width=20).pack(pady=5)
 
-@app.route("/helpbot", methods=["POST"])
-def helpbot():
-    data = request.json
-    user_message = data.get("message", "")
-
-    if not user_message:
-        return jsonify({"error": "No message provided"}), 400
-
-    return jsonify({"reply": f"You said: {user_message}"})
-
-if __name__ == "__main__":
-    app.run(debug=True)
+root.mainloop()
